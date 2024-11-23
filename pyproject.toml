@@ -11,6 +11,12 @@ requires-python = ">=3.9"
 dependencies = [
     "langgraph>=0.2.6",
     "python-dotenv>=1.0.1",
+    "langchain>=0.3.1",
+    "langchain-openai>=0.2.1",
+    "langchain-anthropic>=0.2.1",
+    "langchain-core>=0.3.8",
+    "langchain_community>=0.3.7",
+    "pandas>=2.2.3",
 ]
 
 
@@ -26,7 +32,6 @@ packages = ["langgraph.templates.agent", "agent"]
 [tool.setuptools.package-dir]
 "langgraph.templates.agent" = "src/agent"
 "agent" = "src/agent"
-
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
@@ -54,3 +59,32 @@ lint.ignore = [
 "tests/*" = ["D", "UP"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Hoang Le"]
+readme = "README.md"
+packages = [
+    { include = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pydantic = "^2.9.2"
+langchain-core = "^0.3.17"
+langchain-openai = "^0.2.8"
+langgraph = "^0.2.46"
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.6.1"
+langchain-community = "^0.3.7"
+langchain-anthropic = "^0.3.0"
+langchain-experimental = "^0.3.3"
+langchain-google-genai = "^2.0.5"
+pandas = "^2.2.3"
+ipython = "^8.29.0"
+
+
+[tool.poetry.group.dev.dependencies]
+langchain-cli = ">=0.0.15"
