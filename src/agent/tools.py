@@ -126,7 +126,7 @@ def add_burger_to_cart_tool(
         purchase_burger_item.price * purchase_burger_item.quantity
     )
 
-    return state.purchase_information
+    return state.purchase_information.json()
 
 
 @tool
@@ -150,7 +150,7 @@ def remove_burger_from_cart_tool(
         purchase_burger_item.price * purchase_burger_item.quantity
     )
 
-    return state.purchase_information
+    return state.purchase_information.json()
 
 
 # @tool
@@ -177,7 +177,7 @@ def remove_burger_from_cart_tool(
 
 
 ALL_TOOLS = [
-    search,
+    # search,
     purchase_burger_items,
     suggest_burgers,
     get_current_purchase_information,

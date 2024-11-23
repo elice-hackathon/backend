@@ -25,7 +25,7 @@ class BurgerOption:
 
     def json(self):
         """Return the state as a JSON string."""
-        return json.dump(self.dict())
+        return json.dumps(self.dict())
 
 
 @dataclass
@@ -44,7 +44,7 @@ class PurchaseBurgerItem:
 
     def json(self):
         """Return the state as a JSON string."""
-        return json.dump(self.dict())
+        return json.dumps(self.dict())
 
 
 @dataclass
@@ -79,4 +79,4 @@ class State:
 
     def json(self):
         """Return the state as a JSON string."""
-        return json.dump(self.dict())
+        return json.dumps(self.dict())

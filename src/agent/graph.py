@@ -3,6 +3,7 @@
 This agent returns a predefined response without using an actual LLM.
 """
 
+import ast
 import asyncio
 import json
 import logging
@@ -136,6 +137,16 @@ def add_burger_to_cart(state: State, config: RunnableConfig):
     if state.purchase_information is None:
         state.purchase_information = PurchaseInformation()
 
+    else:
+        prev_purchase_information = json.loads(state.purchase_information)
+
+        state.purchase_information = PurchaseInformation(
+            items=ast.literal_eval(prev_purchase_information["items"]),
+            total_price=float(prev_purchase_information["total_price"]),
+            total_items=int(prev_purchase_information["total_items"]),
+            total_quantity=int(prev_purchase_information["total_quantity"]),
+        )
+
     state.purchase_information.items.append(purchase_burger_item)
     state.purchase_information.total_items += 1
     state.purchase_information.total_quantity += purchase_burger_item["quantity"]
@@ -152,7 +163,7 @@ def add_burger_to_cart(state: State, config: RunnableConfig):
                 "content": f"Successfully added {purchase_burger_item['name']} to {user_id}'s cart.",
             }
         ],
-        "purchase_information": state.purchase_information,
+        "purchase_information": state.purchase_information.json(),
     }
 
 
@@ -184,6 +195,16 @@ def remove_burger_from_cart(state: State, config: RunnableConfig):
     if state.purchase_information is None:
         state.purchase_information = PurchaseInformation()
 
+    else:
+        prev_purchase_information = json.loads(state.purchase_information)
+
+        state.purchase_information = PurchaseInformation(
+            items=ast.literal_eval(prev_purchase_information["items"]),
+            total_price=float(prev_purchase_information["total_price"]),
+            total_items=int(prev_purchase_information["total_items"]),
+            total_quantity=int(prev_purchase_information["total_quantity"]),
+        )
+
     state.purchase_information.items.remove(purchase_burger_item)
     state.purchase_information.total_items -= 1
     state.purchase_information.total_quantity -= purchase_burger_item["quantity"]
@@ -200,7 +221,7 @@ def remove_burger_from_cart(state: State, config: RunnableConfig):
                 "content": f"Successfully removed {purchase_burger_item['name']} to {user_id}'s cart.",
             }
         ],
-        "purchase_information": state.purchase_information,
+        "purchase_information": state.purchase_information.json(),
     }
 
 
