@@ -59,7 +59,7 @@ async def suggest_burgers(
     # TODO: Implement the search logic here.
     # user_id = Configuration.from_runnable_config(config).user_id
 
-    return burger_menus
+    return {"burgerItems": burger_menus}
 
 
 # @tool
